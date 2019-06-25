@@ -47,22 +47,26 @@ class MelhoresPorCategoria:
         self.search_params = {
             'q': '{}'.format(nome_pesquisa),
             'result_type': 'popular',
-            'count': 100
+            'count': 500
         }
         self.search_url = '{}1.1/search/tweets.json'.format(self.baseurl)
         self.search_resp = requests.get(self.search_url, headers=self.search_headers, params=self.search_params)
         return self.search_resp.json()['statuses']
 
-    def retornaQuantidadeMencionada(self, genero, nome_pesquisa):
+    def retorna_quantidade_por_pesquisa(self, genero, nome_pesquisa):
         # pprint.pprint(self.pesquisa(nome_pesquisa))
+        self.list_dados = []
         for track_name in self.selecionarPorGenero(genero)["track_name"]:
             for dado in self.pesquisa(track_name):
                 dados = {
+                    "track_name": track_name,
                     "user": dado['user']['screen_name'],
-                    "retweet_count": dado['retweet_count'],
+                    "retweet_count": dado['retweet_count']+ dado['retweet_count'],
                     "text": dado['text'],
                 }
-                self.dataframe_filtrado = pd.DataFrame(dados)
+                self.list_dados.append(dados)
+        self.dataframe_filtrado = pd.DataFrame(self.list_dados)
+        self.dataframe_filtrado.to_csv("teste.csv")
         return self.dataframe_filtrado
 
     ## criar um dataframe ou arquivo csv
@@ -74,7 +78,8 @@ class MelhoresPorCategoria:
 if __name__ == "__main__":
     teste = MelhoresPorCategoria("AppleStore.csv")
     # print(teste.dados)
-    print(teste.retornaQuantidadeMencionada("Music", "pandora"))
+    print(teste.retorna_quantidade_por_pesquisa("Book", "pandora"))
+    # teste.retornaQuantidadeMencionada("Music", "pandora")
     # print(teste.selecionarPorGenero("Music"))
     # print(teste.retorna10MelhoresPorAvaliacoes("Music"))
 #     teste.retornaSoMusic()
