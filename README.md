@@ -1,5 +1,5 @@
 # data_science 
-Projeto de analise de dados proposto no teste da empresa cognitivo.
+Projeto de analise de dados.
 
 # Instalação do projeto:
 ## Requerimentos do projeto
@@ -53,9 +53,13 @@ Projeto de analise de dados proposto no teste da empresa cognitivo.
    Os csvs gerados dos top10 são gerados a cada vez que o programa é gerado, a api do twitter é muito variavel
    portanto seria melhor investigar os top10 em forma de series temporais. Cada arquivo csv, retornara o top10
    do momento.
+   
+   No diretorio series_csvs existem arquivos csvs gerados a cada momento analisado.
    ```
    
-   # Duvidas Sobre o projeto
+   ## Gerando Json
+   
    ```
-   Seria preciso criar uma api web para disponibilizar os dados? No documento de teste não ficou claro essa abordagem.
+   Com o ambiente virtual ativado e localizado no diretorio do projeto
+    $ python dados_json.py
    ```

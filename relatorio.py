@@ -88,7 +88,6 @@ class MelhoresPorCategoria:
         listas.to_csv("arquivo.csv")
 
     def retornar_top10_books_music(self):
-        # self.unir_listas()
         dados = pd.read_csv("arquivo.csv")
         data = dados.sort_values(['retweet_count'], ascending=False)
         data.drop("Unnamed: 0", axis=1, inplace=True)
@@ -118,7 +117,6 @@ class MelhoresPorCategoria:
         data_frame_merge = pd.merge(self.retornar_top10_books_music().head(10), self.redefinir_dataframe())
         df_renomeado_colunas = data_frame_merge[["id", "track_name", "retweet_count", "size_bytes", "price", "prime_genre"]]
         rename_data_frame = df_renomeado_colunas.rename(index=str, columns={"retweet_count": "n_citacoes"})
-        # rename_data_frame.drop("Unnamed: 0", axis=1, inplace=True)
         hoje = datetime.now()
         rename_data_frame.to_csv("{}-{}--{}:{}-top10.csv".format(hoje.day, hoje.month, hoje.hour, hoje.minute))
 
@@ -132,6 +130,5 @@ if __name__ == "__main__":
     teste = MelhoresPorCategoria("AppleStore.csv")
     print("Aguarde ...")
     teste.unir_listas()
-    # print(teste.retornar_top10_books_music().head(10))
     teste.redefinir_dataframe()
     teste.merge_dataframes()
