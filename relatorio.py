@@ -8,11 +8,11 @@ class MelhoresPorCategoria:
     def __init__(self, path_csv):
         self.dados = pd.read_csv(path_csv)
         self.array_dados_music_book = []
-        self.token = "897644245607223297-TSowyDAPxcZ1FcSW3hBjyAXLOJkwT9p"
+        self.token = ""
         self.baseurl = 'https://api.twitter.com/'
         self.auth_url = '{}oauth2/token'.format(self.baseurl)
-        self.client_key = "Q7Ui7rCiBoCquM8QotxcgwJw5"
-        self.client_secret = "i43VmmpPujgyZzPaHgylLkUAN5nhR1XZoS6TEOPPCMwph2aQ58"
+        self.client_key = ""
+        self.client_secret = ""
         self.key_secret = '{}:{}'.format(self.client_key, self.client_secret).encode('ascii')
         self.b64_encoded_key = base64.b64encode(self.key_secret)
         self.b64_encoded_key = self.b64_encoded_key.decode('ascii')
